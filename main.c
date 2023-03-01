@@ -106,17 +106,24 @@ const char* find(data* letters, int no,const char* to_find, int index){
 }
 
 // encode the symbol based on its position in the heap
-void encode(data* letters, int no){
+void encode(data* letters, int no, int reverse){
+
+    // to change the encoded version from standard(i.e. left = 0, right = 1)
+    char left[2], right[2];
+    strcpy(left,(reverse == 0 ? "1" : "0"));
+    strcpy(right, reverse == 0 ? "0" : "1");
+
     for(int i=1; i<no; i++){
+
         // if it is the first two nodes we manually allocate
         if(i==1 || i == 2){
-            strcat(letters[i].encode, i%2==0 ? "1" : "0");
+            strcat(letters[i].encode, i%2==0 ? left: right);
         }
         else{
             // we search for its parent node and use its encoded string
             strcat(letters[i].encode,find(letters,no,letters[i].word,i-1));
             // than add the corresponding code
-            strcat(letters[i].encode, i%2==0 ? "1" : "0");
+            strcat(letters[i].encode, i%2==0 ? left : right);
         }
     }
 }
@@ -160,7 +167,7 @@ int main()
     complete_nodes(store,&x);
 
     reverse(store,x);
-    encode(store,x);
+    encode(store,x,0);
 
     display_encoded(store,x);
     display_entropy(store,x);
