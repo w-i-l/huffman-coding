@@ -22,7 +22,7 @@ data* read_data(int *no){
     scanf("%d",&no_of_chars);
     printf("\n");
 
-    data* letters = malloc((no_of_chars) * sizeof(data));
+    data* letters = malloc((2*no_of_chars-1) * sizeof(data));
     printf("before rea : %p\n",letters);
 
     if(letters == NULL){
@@ -44,8 +44,8 @@ data* read_data(int *no){
 
 void complete_nodes(data* letters, int* no){
 
-    letters = realloc(letters, (2*(*no)-1) * sizeof(data));
-    printf("After rea : %p\n",letters);
+    //letters = realloc(letters, (2*(*no)-1) * sizeof(data));
+    //printf("After rea : %p\n",letters);
     //printf("%s %f\n",letters[0].word,letters[0].probability);
     //sort(letters,*no);
     //printf("%s %f\n",letters[0].word,letters[0].probability);
@@ -53,16 +53,16 @@ void complete_nodes(data* letters, int* no){
     //printf("size: %d\n",(2*(*no)-1));
     int j=0,k=1;
 
-//    while(j < 2*(*no)-1 && k < 2*(*no)-1 ){
+    while(j < 2*(*no)-1 && k < 2*(*no)-1 ){
         letters[i].probability = letters[j].probability + letters[k].probability;
-        //strcpy(letters[i].word,letters[j].word);
-        //strcat(letters[i].word,letters[k].word);
+        strcpy(letters[i].word,letters[j].word);
+        strcat(letters[i].word,letters[k].word);
         printf("prob: %f\n",letters[i].probability);
         i++;
-//        sort(letters,i);
+        sort(letters,i);
         j++;
         k++;
-//    }
+    }
 
     *no = i;
 
