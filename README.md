@@ -15,7 +15,7 @@
 <p>All the function flow is implemented in the main function. The coding standard is to assign 0 to the left node and 1 to right, if you wish to change it, just modify the 3rd parameter of <b>encode</b> function to 1.</p>
 
 <h3>How to run</h3>
-<code bash>g++ main.c util.c -o main</code>
+<code bash>g++ main.c util.c -o main2</code>
 
 <br>
 <hr>
